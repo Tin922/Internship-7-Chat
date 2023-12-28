@@ -1,11 +1,20 @@
 ﻿using Chat.Data.Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+
 
 namespace Chat.Data.Entities;
 
-    public class ChatDbContext : DbContext
+public class ChatDbContext : DbContext
+{
+    public ChatDbContext(DbContextOptions options) : base(options)
     {
-    public DbSet<User> Users { get; set; }
+    }
+
+
+    
+        public DbSet<User> Users { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupUser> GroupUsers { get; set; }
         public DbSet<DirectMessage> DirectMessages { get; set; }
@@ -57,3 +66,24 @@ namespace Chat.Data.Entities;
         }
     
 }
+public class ChatDbContextFactory : IDesignTimeDbContextFactory<ChatDbContext>
+{
+    public ChatDbContext CreateDbContext(string[] args)
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddXmlFile("App.config")
+            .Build();
+
+        config.Providers
+            .First()
+            .TryGet("connectionStrings:add:Chat:connectionString", out var connectionString);
+
+        var options = new DbContextOptionsBuilder<ChatDbContext>()
+            .UseNpgsql(connectionString)
+            .Options;
+
+        return new ChatDbContext(options);
+    }
+}
+

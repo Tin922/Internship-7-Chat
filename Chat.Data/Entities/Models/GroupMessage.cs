@@ -8,8 +8,8 @@
         public string Text { get; set; }
         public DateTime Timestamp { get; set; }
 
-        public User Sender { get; set; }
-        public Group Group { get; set; }
+        public User? Sender { get; set; }
+        public Group? Group { get; set; }
     }
 }
 
