@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using Chat.Data.Entities.Seeds;
 
 
 namespace Chat.Data.Entities;
@@ -61,8 +62,8 @@ public class ChatDbContext : DbContext
                 .HasForeignKey(gm => gm.GroupId)
                 .OnDelete(DeleteBehavior.Restrict);
            
-
-            base.OnModelCreating(modelBuilder);
+        DatabaseSeeder.Seed(modelBuilder);
+        base.OnModelCreating(modelBuilder);
         }
     
 }
