@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Chat.Presentation.Factories;
+using Chat.Presentation.Extensions;
+
+
+var mainMenuActions = MainMenuFactory.CreateActions();
+mainMenuActions.PrintActionsAndOpen();

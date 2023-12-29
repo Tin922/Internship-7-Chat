@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Chat.Data.Entities.Models;
+using Chat.Data.Entities;
+using Chat.Domain.Enums;
 
 namespace Chat.Domain.Repositories
 {
-    internal class GroupMessageRepository
+    public class GroupMessageRepository : BaseRepository
     {
+        public GroupMessageRepository(ChatDbContext dbContext) : base(dbContext)
+        {
+        }
+
+        public ResponseResultType Add(GroupMessage GroupMessage)
+        {
+            DbContext.GroupMessages.Add(GroupMessage);
+
+            return SaveChanges();
+        }
+
+
     }
 }
