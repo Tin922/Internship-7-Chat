@@ -31,7 +31,7 @@ namespace Chat.Presentation.Actions
 
             if (_userRepository.Add(new User()) == ResponseResultType.Success)
             {
-                Console.WriteLine("Successfully registered.");
+                Console.WriteLine("Uspjesna registracija.");
             }
 
 
@@ -59,18 +59,12 @@ namespace Chat.Presentation.Actions
                 string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 Random random = new Random();
                 char[] captchaArray = new char[8];
-
-                // Ensure at least one letter and one number in the CAPTCHA
-                captchaArray[0] = characters[random.Next(26)]; // First character is a random letter
-                captchaArray[1] = characters[random.Next(52, 62)]; // Second character is a random number
-
-                // Fill the rest of the array with random characters
+                captchaArray[0] = characters[random.Next(26)];
+                captchaArray[1] = characters[random.Next(52, 62)];
                 for (int i = 2; i < 8; i++)
                 {
                     captchaArray[i] = characters[random.Next(characters.Length)];
                 }
-
-                // Shuffle the array to randomize the order
                 for (int i = 0; i < 7; i++)
                 {
                     int j = random.Next(i, 8);
@@ -84,11 +78,8 @@ namespace Chat.Presentation.Actions
             }
             static bool IsValidEmail(string email)
             {
-                // Regularni izraz za provjeru formata email adrese
                 string pattern = @"^.+@[a-zA-Z]{2,}\.[a-zA-Z]{3,}$";
                 Regex regex = new Regex(pattern);
-
-                // Provjeri da li adresa odgovara zadatom formatu
                 return regex.IsMatch(email);
             }
             static string GetNonBlankPassword()
@@ -98,8 +89,8 @@ namespace Chat.Presentation.Actions
                 do
                 {
                     Console.WriteLine("Upisite sifru:");
-                    password = Console.ReadLine().Trim(); // Trim to remove leading and trailing whitespaces
-                } while (string.IsNullOrWhiteSpace(password)); // Repeat until a non-blank password is entered
+                    password = Console.ReadLine().Trim();
+                } while (string.IsNullOrWhiteSpace(password));
 
                 return password;
 
