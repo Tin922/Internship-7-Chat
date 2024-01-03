@@ -29,7 +29,10 @@ namespace Chat.Presentation.Actions
             string captcha = GenerateRandomCaptcha();
             ValidateCaptcha(captcha);
 
-            if (_userRepository.Add(new User()) == ResponseResultType.Success)
+            if (_userRepository.Add(new User() { 
+                Email = email,
+                Password = passsword}
+            ) == ResponseResultType.Success)
             {
                 Console.WriteLine("Uspjesna registracija.");
             }
