@@ -13,6 +13,7 @@ namespace Chat.Presentation.Factories
             var actions = new List<IAction>
         {
             LoginFactory.Create(),
+            RegisterFactory.Create(),
             new ExitMenuAction(),
         };
 
