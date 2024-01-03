@@ -58,7 +58,7 @@ namespace Chat.Data.Migrations
                             ReceiverId = 2,
                             SenderId = 1,
                             Text = "Bok",
-                            Timestamp = new DateTime(2023, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2023, 1, 1, 18, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -66,7 +66,7 @@ namespace Chat.Data.Migrations
                             ReceiverId = 1,
                             SenderId = 2,
                             Text = "Bok, Luka",
-                            Timestamp = new DateTime(2023, 1, 1, 18, 5, 0, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2023, 1, 1, 18, 5, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
@@ -140,7 +140,7 @@ namespace Chat.Data.Migrations
                             GroupId = 1,
                             SenderId = 1,
                             Text = "Prva poruka u grupi",
-                            Timestamp = new DateTime(2023, 1, 1, 20, 1, 1, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2023, 1, 1, 20, 1, 1, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -148,7 +148,7 @@ namespace Chat.Data.Migrations
                             GroupId = 1,
                             SenderId = 2,
                             Text = "Bok, Luka",
-                            Timestamp = new DateTime(2023, 1, 1, 20, 1, 2, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2023, 1, 1, 20, 1, 2, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -156,7 +156,7 @@ namespace Chat.Data.Migrations
                             GroupId = 2,
                             SenderId = 1,
                             Text = "Ovo je dev kanal",
-                            Timestamp = new DateTime(2023, 1, 1, 21, 1, 2, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2023, 1, 1, 21, 1, 2, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -164,7 +164,7 @@ namespace Chat.Data.Migrations
                             GroupId = 2,
                             SenderId = 2,
                             Text = "Pozdrav",
-                            Timestamp = new DateTime(2023, 1, 1, 21, 2, 2, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2023, 1, 1, 21, 2, 2, 0, DateTimeKind.Utc)
                         });
                 });
 

@@ -43,7 +43,7 @@ namespace Chat.Data.Entities.Seeds
                     SenderId = 1,
                     ReceiverId = 2,
                     Text = "Bok",
-                    Timestamp = new DateTime(2023,1,1, 18,0,0)
+                    Timestamp = new DateTime(2023,1,1, 18,0,0, DateTimeKind.Utc)
                 },
                 new DirectMessage()
                 {
@@ -51,7 +51,7 @@ namespace Chat.Data.Entities.Seeds
                     SenderId = 2,
                     ReceiverId = 1,
                     Text = "Bok, Luka",
-                    Timestamp = new DateTime(2023,1,1, 18,5,0)
+                    Timestamp = new DateTime(2023,1,1, 18,5,0, DateTimeKind.Utc)
                 }
                });
 
@@ -107,7 +107,7 @@ namespace Chat.Data.Entities.Seeds
                       SenderId = 1,
                       GroupId = 1,
                       Text = "Prva poruka u grupi",
-                      Timestamp = new DateTime(2023,1,1,20,1,1)
+                      Timestamp = new DateTime(2023,1,1,20,1,1, DateTimeKind.Utc)
                   },
                    new GroupMessage()
                   {
@@ -115,7 +115,7 @@ namespace Chat.Data.Entities.Seeds
                       SenderId = 2,
                       GroupId = 1,
                       Text = "Bok, Luka",
-                      Timestamp = new DateTime(2023,1,1,20,1,2)
+                      Timestamp = new DateTime(2023,1,1,20,1,2, DateTimeKind.Utc)
                   },
                       new GroupMessage()
                   {
@@ -123,7 +123,7 @@ namespace Chat.Data.Entities.Seeds
                       SenderId = 1,
                       GroupId = 2,
                       Text = "Ovo je dev kanal",
-                      Timestamp = new DateTime(2023,1,1,21,1,2)
+                      Timestamp = new DateTime(2023,1,1,21,1,2, DateTimeKind.Utc)
                   },
                   new GroupMessage()
                   {
@@ -131,7 +131,7 @@ namespace Chat.Data.Entities.Seeds
                       SenderId = 2,
                       GroupId = 2,
                       Text = "Pozdrav",
-                      Timestamp = new DateTime(2023,1,1,21,2,2)
+                      Timestamp = new DateTime(2023,1,1,21,2,2, DateTimeKind.Utc)
                   }
               });
         }

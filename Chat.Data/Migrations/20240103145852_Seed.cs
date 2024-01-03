@@ -49,8 +49,8 @@ namespace Chat.Data.Migrations
                 columns: new[] { "DirectMessageId", "ReceiverId", "SenderId", "Text", "Timestamp" },
                 values: new object[,]
                 {
-                    { 1, 2, 1, "Bok", new DateTime(2023, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 1, 2, "Bok, Luka", new DateTime(2023, 1, 1, 18, 5, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, 2, 1, "Bok", new DateTime(2023, 1, 1, 18, 0, 0, 0, DateTimeKind.Utc) },
+                    { 2, 1, 2, "Bok, Luka", new DateTime(2023, 1, 1, 18, 5, 0, 0, DateTimeKind.Utc) }
                 });
 
             migrationBuilder.InsertData(
@@ -58,10 +58,10 @@ namespace Chat.Data.Migrations
                 columns: new[] { "GroupMessageId", "GroupId", "SenderId", "Text", "Timestamp" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, "Prva poruka u grupi", new DateTime(2023, 1, 1, 20, 1, 1, 0, DateTimeKind.Unspecified) },
-                    { 2, 1, 2, "Bok, Luka", new DateTime(2023, 1, 1, 20, 1, 2, 0, DateTimeKind.Unspecified) },
-                    { 3, 2, 1, "Ovo je dev kanal", new DateTime(2023, 1, 1, 21, 1, 2, 0, DateTimeKind.Unspecified) },
-                    { 4, 2, 2, "Pozdrav", new DateTime(2023, 1, 1, 21, 2, 2, 0, DateTimeKind.Unspecified) }
+                    { 1, 1, 1, "Prva poruka u grupi", new DateTime(2023, 1, 1, 20, 1, 1, 0, DateTimeKind.Utc) },
+                    { 2, 1, 2, "Bok, Luka", new DateTime(2023, 1, 1, 20, 1, 2, 0, DateTimeKind.Utc) },
+                    { 3, 2, 1, "Ovo je dev kanal", new DateTime(2023, 1, 1, 21, 1, 2, 0, DateTimeKind.Utc) },
+                    { 4, 2, 2, "Pozdrav", new DateTime(2023, 1, 1, 21, 2, 2, 0, DateTimeKind.Utc) }
                 });
 
             migrationBuilder.InsertData(
