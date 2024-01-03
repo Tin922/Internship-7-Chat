@@ -17,6 +17,18 @@ namespace Chat.Domain.Repositories
             return SaveChanges();
         }
 
+        public ResponseResultType Delete(int id)
+        {
+            var groupUserToDelete = DbContext.GroupUsers.Find(id);
+            if (groupUserToDelete is null)
+            {
+                return ResponseResultType.NotFound;
+            }
+
+            DbContext.GroupUsers.Remove(groupUserToDelete);
+
+            return SaveChanges();
+        }
     }
 
 }

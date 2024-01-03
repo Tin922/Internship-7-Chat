@@ -18,14 +18,8 @@ namespace Chat.Domain.Repositories
 
             return SaveChanges();
         }
-            
-
-        
-
-        
-
         public ICollection<Group> GetAll() => DbContext.Groups.ToList();
 
      
-        }
     }
+}

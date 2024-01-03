@@ -46,6 +46,8 @@ namespace Chat.Domain.Repositories
         }
 
         public User? GetById(int id) => DbContext.Users.FirstOrDefault(u => u.UserId == id);
+        public User? GetByEmail(string email) => DbContext.Users.FirstOrDefault(u => u.Email == email);
+
         public ICollection<User> GetAll() => DbContext.Users.ToList();
         
     }

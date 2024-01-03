@@ -16,6 +16,20 @@ namespace Chat.Domain.Repositories
 
             return SaveChanges();
         }
+        public ResponseResultType Delete(int id)
+        {
+            var MessageToDelete = DbContext.GroupMessages.Find(id);
+            if (MessageToDelete is null)
+            {
+                return ResponseResultType.NotFound;
+            }
+
+            DbContext.GroupMessages.Remove(MessageToDelete);
+
+            return SaveChanges();
+        }
+        public ICollection<GroupMessage> GetAll() => DbContext.GroupMessages.ToList();
+           
 
 
     }

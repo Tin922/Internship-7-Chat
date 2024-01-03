@@ -18,7 +18,19 @@ namespace Chat.Domain.Repositories
 
                 return SaveChanges();
             }
+        public ResponseResultType Delete(int id)
+        {
+            var MessageToDelete = DbContext.DirectMessages.Find(id);
+            if (MessageToDelete is null)
+            {
+                return ResponseResultType.NotFound;
+            }
 
-        
+            DbContext.DirectMessages.Remove(MessageToDelete);
+
+            return SaveChanges();
         }
+
+
+    }
 }
