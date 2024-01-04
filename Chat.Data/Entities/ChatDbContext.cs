@@ -29,12 +29,14 @@ public class ChatDbContext : DbContext
         modelBuilder.Entity<GroupUser>()
             .HasOne(gu => gu.User)
             .WithMany(u => u.GroupUsers)
-            .HasForeignKey(gu => gu.UserId);
+            .HasForeignKey(gu => gu.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<GroupUser>()
             .HasOne(gu => gu.Group)
             .WithMany(g => g.GroupUsers)
-            .HasForeignKey(gu => gu.GroupId);
+            .HasForeignKey(gu => gu.GroupId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<DirectMessage>()
             .HasOne(dm => dm.Sender)

@@ -1,9 +1,11 @@
 ﻿
 
 
+using Chat.Data.Entities.Models;
 using Chat.Domain.Repositories;
 using Chat.Presentation.Abstractions;
-
+using Chat.Presentation.Extensions;
+using Chat.Presentation.Factories;
 
 namespace Chat.Presentation.Actions
 {
@@ -11,6 +13,7 @@ namespace Chat.Presentation.Actions
     {
 
         private readonly UserRepository _userRepository;
+        private static User? _currentUser = null;
         public int MenuIndex { get; set; }
         public string Name { get; set; } = "Login";
         public Login(UserRepository userRepository)
@@ -27,13 +30,23 @@ namespace Chat.Presentation.Actions
 
             var user = _userRepository.GetByEmail(email);
             if (user is not null && user.Password == passsword)
+            {
                 Console.WriteLine("Login successful");
+                 _currentUser = user;
+                var menuActions = MenuAfterLogin.CreateActions();
+                menuActions.PrintActionsAndOpen();
+              
+            }
             else
             {
                 Console.WriteLine("Login failed");
                 Thread.Sleep(30000);
             }
 
+        }
+        public static User? GetCurrentUser()
+        {
+            return _currentUser;
         }
     }
 }

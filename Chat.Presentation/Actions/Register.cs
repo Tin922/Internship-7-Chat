@@ -48,7 +48,7 @@ namespace Chat.Presentation.Actions
 
                     if (!IsValidEmail(email))
                     {
-                        Console.WriteLine("Neispravan fromat emaila! Unesite email ponovno.");
+                        Console.WriteLine("Neispravan format emaila! Unesite email ponovno.");
                     }
                     if (userRepository.GetByEmail(email) != null)
                     {
