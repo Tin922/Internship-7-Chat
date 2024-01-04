@@ -6,6 +6,7 @@ using Chat.Domain.Repositories;
 using Chat.Presentation.Abstractions;
 using Chat.Presentation.Actions;
 using Chat.Presentation.Extensions;
+using System.Data;
 
 namespace Chat.Presentation.Factories
 {
@@ -18,13 +19,28 @@ namespace Chat.Presentation.Factories
             GroupChannelFactory.Create(),
             DirectMessageFactory.Create(),
             new ProfileSettings(RepositoryFactory.Create<UserRepository>()),
+            new LogoutAction()
+
+        };      
 
 
-        };
+
 
             actions.SetActionIndexes();
 
             return actions;
+        }
+        public class LogoutAction : IAction
+        {
+            public int MenuIndex { get; set; }
+            public string Name { get; set; } = "Logout";
+
+            public void Open()
+            {
+                
+                Login.Logout();
+               
+            }
         }
     }
 }

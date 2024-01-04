@@ -22,10 +22,10 @@ namespace Chat.Presentation.Actions
         {
             var currentUser = Login.GetCurrentUser();
 
-            Console.WriteLine("Choose an option:");
-            Console.WriteLine("1. Change Password");
-            Console.WriteLine("2. Change Email");
-            Console.WriteLine("3. Go Back");
+            Console.WriteLine("Odaberite opciju:");
+            Console.WriteLine("1. Promijeni sifru");
+            Console.WriteLine("2. Promijeni mail");
+            Console.WriteLine("3. Idi nazad");
 
             var choice = Console.ReadLine();
 
@@ -38,10 +38,10 @@ namespace Chat.Presentation.Actions
                     ChangeEmail(currentUser);
                     break;
                 case "3":
-                    Console.WriteLine("Going back to the main menu.");
+                    Console.WriteLine("Nazad na prethodni meni");
                     break;
                 default:
-                    Console.WriteLine("Invalid choice. Please try again.");
+                    Console.WriteLine("Neispravan odabir");
                     Open();
                     break;
             }
@@ -49,12 +49,12 @@ namespace Chat.Presentation.Actions
 
         private void ChangePassword(User currentUser)
         {
-            Console.WriteLine("Enter your current password:");
+            Console.WriteLine("Upisite sadasnju sifru");
             var currentPassword = Console.ReadLine();
 
             if (currentPassword == currentUser.Password)
             {
-                Console.WriteLine("Enter your new password:");
+                Console.WriteLine("Upisite novu sifru");
                 var newPassword = Register.GetNonBlankPassword();                
                 string captcha = Register.GenerateRandomCaptcha();
                 Register.ValidateCaptcha(captcha);
@@ -63,17 +63,16 @@ namespace Chat.Presentation.Actions
                 currentUser.Password = newPassword;
                 _userRepository.Update(currentUser, currentUser.UserId);
 
-                Console.WriteLine("Password changed successfully.");
+                Console.WriteLine("Sifra promijenjna uspjesno");
             }
             else
             {
-                Console.WriteLine("Incorrect current password. Password change failed.");
+                Console.WriteLine("Pogresna sadasnja sifra. Promjena se nece dogoditi");
             }
         }
 
         private void ChangeEmail(User currentUser)
         {
-            Console.WriteLine("Enter your new email:");
             var newEmail = Register.GetEmailFromUser(_userRepository);
             string captcha = Register.GenerateRandomCaptcha();
             Register.ValidateCaptcha(captcha);
@@ -81,7 +80,7 @@ namespace Chat.Presentation.Actions
             currentUser.Email = newEmail;
             _userRepository.Update(currentUser, currentUser.UserId);
 
-            Console.WriteLine("Email changed successfully.");
+            Console.WriteLine("Email promijenjen uspjesno.");
         }
     }
 }

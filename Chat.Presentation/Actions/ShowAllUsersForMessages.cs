@@ -97,7 +97,8 @@ public class ShowAllUsersForMessages : IAction
             {
                 SenderId = Login.GetCurrentUser().UserId,
                 ReceiverId = otherUser.UserId,
-                Text = messageText
+                Text = messageText,
+                Timestamp = DateTime.UtcNow
             });
         }
     }

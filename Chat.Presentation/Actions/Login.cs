@@ -48,5 +48,14 @@ namespace Chat.Presentation.Actions
         {
             return _currentUser;
         }
-    }
+        public static void Logout()
+        {
+           
+            _currentUser = null;
+            Console.WriteLine("Logout successful");
+            var mainMenuActions = MainMenuFactory.CreateActions();
+            mainMenuActions.PrintActionsAndOpen();
+        }
+}
+
 }
