@@ -17,6 +17,8 @@ namespace Chat.Presentation.Factories
         {
             GroupChannelFactory.Create(),
             DirectMessageFactory.Create(),
+            new ProfileSettings(RepositoryFactory.Create<UserRepository>()),
+
 
         };
 

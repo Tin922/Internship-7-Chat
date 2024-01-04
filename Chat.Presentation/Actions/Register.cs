@@ -38,90 +38,91 @@ namespace Chat.Presentation.Actions
             }
 
 
-            static string GetEmailFromUser(UserRepository userRepository)
-            {
-                string email;
-                do
-                {
-                    Console.WriteLine("Unesite email");
-                    email = Console.ReadLine();
+            
 
-                    if (!IsValidEmail(email))
-                    {
-                        Console.WriteLine("Neispravan format emaila! Unesite email ponovno.");
-                    }
-                    if (userRepository.GetByEmail(email) != null)
-                    {
-                        Console.WriteLine("korisnik s tim emailom vec postoji! Unesite neki drugi email.");
-                    }
-                } while (!IsValidEmail(email) || userRepository.GetByEmail(email) != null);
-                return email;
-            }
-            static string GenerateRandomCaptcha()
+        }
+        public static string GetEmailFromUser(UserRepository userRepository)
+        {
+            string email;
+            do
             {
-                string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                Random random = new Random();
-                char[] captchaArray = new char[8];
-                captchaArray[0] = characters[random.Next(26)];
-                captchaArray[1] = characters[random.Next(52, 62)];
-                for (int i = 2; i < 8; i++)
+                Console.WriteLine("Unesite email");
+                email = Console.ReadLine();
+
+                if (!IsValidEmail(email))
                 {
-                    captchaArray[i] = characters[random.Next(characters.Length)];
+                    Console.WriteLine("Neispravan format emaila! Unesite email ponovno.");
                 }
-                for (int i = 0; i < 7; i++)
+                if (userRepository.GetByEmail(email) != null)
                 {
-                    int j = random.Next(i, 8);
-                    char temp = captchaArray[i];
-
-                    captchaArray[i] = captchaArray[j];
-                    captchaArray[j] = temp;
+                    Console.WriteLine("korisnik s tim emailom vec postoji! Unesite neki drugi email.");
                 }
-
-                return new string(captchaArray);
-            }
-            static bool IsValidEmail(string email)
+            } while (!IsValidEmail(email) || userRepository.GetByEmail(email) != null);
+            return email;
+        }
+        public static string GenerateRandomCaptcha()
+        {
+            string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            Random random = new Random();
+            char[] captchaArray = new char[8];
+            captchaArray[0] = characters[random.Next(26)];
+            captchaArray[1] = characters[random.Next(52, 62)];
+            for (int i = 2; i < 8; i++)
             {
-                string pattern = @"^.+@[a-zA-Z]{2,}\.[a-zA-Z]{3,}$";
-                Regex regex = new Regex(pattern);
-                return regex.IsMatch(email);
+                captchaArray[i] = characters[random.Next(characters.Length)];
             }
-            static string GetNonBlankPassword()
+            for (int i = 0; i < 7; i++)
             {
-                string password;
+                int j = random.Next(i, 8);
+                char temp = captchaArray[i];
 
-                do
+                captchaArray[i] = captchaArray[j];
+                captchaArray[j] = temp;
+            }
+
+            return new string(captchaArray);
+        }
+        public static bool IsValidEmail(string email)
+        {
+            string pattern = @"^.+@[a-zA-Z]{2,}\.[a-zA-Z]{3,}$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(email);
+        }
+        public static string GetNonBlankPassword()
+        {
+            string password;
+
+            do
+            {
+                Console.WriteLine("Upisite sifru:");
+                password = Console.ReadLine().Trim();
+            } while (string.IsNullOrWhiteSpace(password));
+
+            return password;
+
+        }
+        public static void ConfirmPassword(string password)
+        {
+            string reenteredPassword;
+            do
+            {
+                Console.WriteLine("Upisite sifru ponovno: ");
+                reenteredPassword = Console.ReadLine();
+
+                if (reenteredPassword != password)
                 {
-                    Console.WriteLine("Upisite sifru:");
-                    password = Console.ReadLine().Trim();
-                } while (string.IsNullOrWhiteSpace(password));
-
-                return password;
-
-            }
-            static void ConfirmPassword(string password)
+                    Console.WriteLine("Sifre se ne podudaraju! Unesite sifru ponovno.");
+                }
+            } while (reenteredPassword != password);
+        }
+        public static void ValidateCaptcha(string captcha)
+        {
+            string enteredCaptcha;
+            do
             {
-                string reenteredPassword;
-                do
-                {
-                    Console.WriteLine("Upisite sifru ponovno: ");
-                    reenteredPassword = Console.ReadLine();
-
-                    if (reenteredPassword != password)
-                    {
-                        Console.WriteLine("Sifre se ne podudaraju! Unesite sifru ponovno.");
-                    }
-                } while (reenteredPassword != password);
-            }
-            static void ValidateCaptcha(string captcha)
-            {
-                string enteredCaptcha;
-                do
-                {
-                    Console.WriteLine("Unesite tekst "+ captcha);
-                    enteredCaptcha = Console.ReadLine();
-                }while(enteredCaptcha != captcha);
-            }
-
+                Console.WriteLine("Unesite tekst " + captcha);
+                enteredCaptcha = Console.ReadLine();
+            } while (enteredCaptcha != captcha);
         }
     }
     
