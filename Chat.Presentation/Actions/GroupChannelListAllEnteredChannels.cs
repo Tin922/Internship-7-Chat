@@ -11,7 +11,7 @@ public class GroupChannelListAllEnteredChannels : IAction
 
 
     public int MenuIndex { get; set; }
-    public string Name { get; set; } = "Group Channel Chat";
+    public string Name { get; set; } = "Ispis svih kanala u kojima se nalazis";
 
     public GroupChannelListAllEnteredChannels(GroupRepository groupRepository, GroupMessageRepository groupMessageRepository)
     {
@@ -29,7 +29,18 @@ public class GroupChannelListAllEnteredChannels : IAction
             Console.WriteLine($"Kanal: {channel.Name}, Korisnici: {channel.GroupUsers.Count}");
         }
 
-        var selectedChannel = GetSelectedChannel();
+        Group selectedChannel;
+
+        do
+        {
+            selectedChannel = GetSelectedChannel();
+
+            if (selectedChannel == null)
+            {
+                Console.WriteLine("Neispravan unos. Provjerite ime kanala i pokušajte ponovno.");
+            }
+
+        } while (selectedChannel == null);
         DisplayChannelMessages(selectedChannel);
 
         SendMessages(selectedChannel);
@@ -48,7 +59,7 @@ public class GroupChannelListAllEnteredChannels : IAction
 
     private void SendMessages(Group selectedChannel)
     {
-        Console.WriteLine("Napisi svoju poruku. (/exit za povratak nazad)");
+        Console.WriteLine("Napisi svoju poruku. ('/exit' za povratak nazad)");
 
         while (true)
         {

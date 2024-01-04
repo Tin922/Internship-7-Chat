@@ -31,7 +31,7 @@ namespace Chat.Presentation.Actions
             var user = _userRepository.GetByEmail(email);
             if (user is not null && user.Password == passsword)
             {
-                Console.WriteLine("Login successful");
+                Console.WriteLine("Login uspjesan");
                  _currentUser = user;
                 var menuActions = MenuAfterLogin.CreateActions();
                 menuActions.PrintActionsAndOpen();
@@ -39,7 +39,7 @@ namespace Chat.Presentation.Actions
             }
             else
             {
-                Console.WriteLine("Login failed");
+                Console.WriteLine("Login neuspjesan");
                 Thread.Sleep(30000);
             }
 
@@ -52,7 +52,7 @@ namespace Chat.Presentation.Actions
         {
            
             _currentUser = null;
-            Console.WriteLine("Logout successful");
+            Console.WriteLine("Logout uspjesan");
             var mainMenuActions = MainMenuFactory.CreateActions();
             mainMenuActions.PrintActionsAndOpen();
         }

@@ -49,6 +49,30 @@ namespace Chat.Domain.Repositories
         public User? GetByEmail(string email) => DbContext.Users.FirstOrDefault(u => u.Email == email);
 
         public ICollection<User> GetAll() => DbContext.Users.ToList();
-        
+
+        public ResponseResultType UpdateRole(int userId, bool isAdmin)
+        {
+            var userToUpdate = DbContext.Users.Find(userId);
+            if (userToUpdate is null)
+            {
+                return ResponseResultType.NotFound;
+            }
+
+            userToUpdate.IsAdmin = isAdmin;
+
+            return SaveChanges();
+        }
+        public ResponseResultType UpdateEmail(int userId, string newEmail)
+        {
+            var userToUpdate = DbContext.Users.Find(userId);
+            if (userToUpdate is null)
+            {
+                return ResponseResultType.NotFound;
+            }
+
+            userToUpdate.Email = newEmail;
+
+            return SaveChanges();
+        }
     }
 }

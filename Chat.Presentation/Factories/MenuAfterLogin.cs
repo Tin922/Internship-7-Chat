@@ -19,7 +19,8 @@ namespace Chat.Presentation.Factories
             GroupChannelFactory.Create(),
             DirectMessageFactory.Create(),
             new ProfileSettings(RepositoryFactory.Create<UserRepository>()),
-            new LogoutAction()
+            new AdminActions(RepositoryFactory.Create<UserRepository>()),
+            new LogoutAction(),
 
         };      
 

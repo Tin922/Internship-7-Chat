@@ -8,12 +8,12 @@ namespace Chat.Presentation.Actions
     {
         public GroupChannelAction(IList<IAction> actions) : base(actions)
         {
-            Name = "Group menu";
+            Name = "Grupni kanali";
         }
 
         public override void Open()
         {
-            Console.WriteLine("Group menu");
+            Console.WriteLine("Grupni kanali");
             base.Open();
         }
 

@@ -8,12 +8,12 @@ namespace Chat.Presentation.Actions
     {
         public DirectMessageAction(IList<IAction> actions) : base(actions)
         {
-            Name = "Direct Messages menu";
+            Name = "Privatne poruke";
         }
 
         public override void Open()
         {
-            Console.WriteLine("Direct Messages menu");
+            Console.WriteLine("Privatne poruke");
             base.Open();
         }
 

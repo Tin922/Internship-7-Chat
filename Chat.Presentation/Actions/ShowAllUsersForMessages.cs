@@ -17,7 +17,7 @@ public class ShowAllUsersForMessages : IAction
     }
 
     public int MenuIndex { get; set; }
-    public string Name { get; set; } = "Show All Users For Messages";
+    public string Name { get; set; } = "Nova poruka";
 
     public void Open()
     {

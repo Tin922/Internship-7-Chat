@@ -9,7 +9,7 @@ namespace Chat.Presentation.Actions
     public class GroupChannelAddNewChannel : IAction
     {
         public int MenuIndex { get; set; }
-        public string Name { get; set; } = "Add new channel";
+        public string Name { get; set; } = "Dodaj novi kanal";
         private readonly GroupRepository _groupRepository;
         User? currentUser = Login.GetCurrentUser();
 
@@ -19,10 +19,7 @@ namespace Chat.Presentation.Actions
             _groupRepository = group;       
         }
         public void Open()
-        {
-
-            Console.WriteLine(currentUser.UserId);
-            Console.WriteLine(currentUser.Email);
+        {           
             Console.WriteLine("Upisite ime kanala");
             var channelName = Console.ReadLine();
             var newGroup = new Group() { Name = channelName };

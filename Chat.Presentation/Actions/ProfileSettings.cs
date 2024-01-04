@@ -11,7 +11,7 @@ namespace Chat.Presentation.Actions
         private readonly UserRepository _userRepository;
 
         public int MenuIndex { get; set; }
-        public string Name { get; set; } = "Profile Settings";
+        public string Name { get; set; } = "Postavke profila";
 
         public ProfileSettings(UserRepository userRepository)
         {

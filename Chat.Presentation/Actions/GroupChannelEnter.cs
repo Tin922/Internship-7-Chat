@@ -8,7 +8,7 @@ namespace Chat.Presentation.Actions
     public class GroupChannelEnter : IAction
     {
         public int MenuIndex { get; set; }
-        public string Name { get; set; } = "Enter channel";
+        public string Name { get; set; } = "Uđi u kanal";
         private readonly GroupRepository _groupRepository;
         private readonly UserRepository _userRepository;
         User currentUser = Login.GetCurrentUser();
@@ -24,27 +24,26 @@ namespace Chat.Presentation.Actions
         {
             
 
-            // Show available channels
             var channelsNotJoined = _groupRepository.GetChannelsNotJoinedByUser(currentUser.UserId);
 
             if (channelsNotJoined.Count == 0)
             {
-                Console.WriteLine("You have joined all available channels.");
+                Console.WriteLine("Usao si u sve dostupne kanale.");
                 return;
             }
 
-            Console.WriteLine("Available channels:");
+            Console.WriteLine("Dostupni kanali");
             foreach (var channel in channelsNotJoined)
             {
-                Console.WriteLine($"Channel: {channel.Name}, Users: {channel.GroupUsers.Count}");
+                Console.WriteLine($"Kanal: {channel.Name}, Korisnici: {channel.GroupUsers.Count}");
             }
 
-            Console.WriteLine("Enter the name of the channel you want to join or type 'exit' to cancel:");
+            Console.WriteLine("Upisi ime kanla kojem se zelis pridruziti ili 'exit' za izlaz");
             var channelName = Console.ReadLine();
 
             if (channelName?.ToLower() == "exit")
             {
-                Console.WriteLine("Operation canceled.");
+                Console.WriteLine("Operacija otkazana");
                 return;
             }
 
@@ -54,20 +53,17 @@ namespace Chat.Presentation.Actions
             {
                 Console.WriteLine($"Channel '{channelName}' not found.");
                 return;
-            }
-            Console.WriteLine(currentUser.UserId);
-
-            
+            }      
             
                 var result = _groupRepository.AddUserToGroup(selectedChannel.GroupId, currentUser.UserId);
 
                 if (result == ResponseResultType.Success)
                 {
-                    Console.WriteLine($"You have successfully joined the channel '{selectedChannel.Name}'.");
+                    Console.WriteLine($"Uspjesno si se pridruzio kanalu'{selectedChannel.Name}'.");
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to join the channel '{selectedChannel.Name}'.");
+                    Console.WriteLine($"Nisis se uspio pridruziti kanalu '{selectedChannel.Name}'.");
                 }
             
 

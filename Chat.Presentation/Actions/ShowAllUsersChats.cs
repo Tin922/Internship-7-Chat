@@ -10,7 +10,7 @@ namespace Chat.Presentation.Actions
         private readonly DirectMessageRepository _directMessageRepository;
 
         public int MenuIndex { get; set; }
-        public string Name { get; set; } = "Show All Users Chats";
+        public string Name { get; set; } = "Ispis svih korisnika s kojim si komunicirao";
 
         public ShowAllUsersChats(DirectMessageRepository directMessageRepository)
         {
@@ -25,7 +25,7 @@ namespace Chat.Presentation.Actions
 
             if (usersCommunicatedWith.Count == 0)
             {
-                Console.WriteLine("Nemas poruke s nikim");
+                Console.WriteLine("Nemas poruka");
             }
             else
             {

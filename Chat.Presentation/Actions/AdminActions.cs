@@ -1,61 +1,85 @@
-﻿using Chat.Domain.Enums;
+﻿using Chat.Data.Entities.Models;
+using Chat.Domain.Enums;
 using Chat.Domain.Repositories;
+using Chat.Presentation.Abstractions;
+using System;
 using System.Data;
 
 namespace Chat.Presentation.Actions
 {
-    public class AdminActions
+    public class AdminActions : IAction
     {
         private readonly UserRepository _userRepository;
+        private readonly User currentUser;
+
+        public int MenuIndex { get; set; }
+        public string Name { get; set; } = "User management";
 
         public AdminActions(UserRepository userRepository)
         {
             _userRepository = userRepository;
+            currentUser = Login.GetCurrentUser();
         }
 
-        //public void ShowAdminMenu()
-        //{
-        //    // Display all registered users
-        //    var users = _userRepository.GetAll();
-        //    Console.WriteLine("List of all registered users:");
-        //    foreach (var user in users)
-        //    {
-        //        Console.WriteLine($"User ID: {user.UserId}, Email: {user.Email}, Role: {user.Role}");
-        //    }
+        public void Open()
+        {
+            if (currentUser?.IsAdmin != true)
+            {
+                Console.WriteLine("Nisi admin");
+                return;
+            }
 
-            // Allow admin to choose actions for each user
-            // For each user, provide options to delete profile, update email, and promote to admin
-        //    foreach (var user in users)
-        //    {
-        //        Console.WriteLine($"Actions for User ID {user.UserId}:");
+            var users = _userRepository.GetAll();
+            Console.WriteLine("Lista svih registriranih korisnika");
+            foreach (var user in users)
+            {
+                Console.WriteLine($"User ID: {user.UserId}, Email: {user.Email}, Admin: {user.IsAdmin}");
+            }
 
-        //        Console.WriteLine("1. Delete profile");
-        //        Console.WriteLine("2. Update email");
-        //        Console.WriteLine("3. Promote to admin");
+            Console.WriteLine("Odaberi usera po ID-u");
+            if (int.TryParse(Console.ReadLine(), out var selectedUserId))
+            {
+                var selectedUser = _userRepository.GetById(selectedUserId);
 
-        //        var choice = Console.ReadLine();
+                if (selectedUser != null)
+                {
+                    Console.WriteLine($"Akcije za User ID {selectedUser.UserId}:");
+                    Console.WriteLine("1. Obrisi profil");
+                    Console.WriteLine("2. Promijenite email");
+                    Console.WriteLine("3. Promocija u admina");
 
-        //        switch (choice)
-        //        {
-        //            case "1":
-        //                _userRepository.Delete(user.UserId);
-        //                Console.WriteLine($"Profile for User ID {user.UserId} deleted.");
-        //                break;
-        //            case "2":
-        //                Console.WriteLine("Enter new email:");
-        //                var newEmail = Console.ReadLine();
-        //                _userRepository.UpdateEmail(user.UserId, newEmail);
-        //                Console.WriteLine($"Email for User ID {user.UserId} updated.");
-        //                break;
-        //            case "3":
-        //                _userRepository.UpdateRole(user.UserId, Role.Admin);
-        //                Console.WriteLine($"User ID {user.UserId} promoted to admin.");
-        //                break;
-        //            default:
-        //                Console.WriteLine("Invalid choice.");
-        //                break;
-        //        }
-        //    }
-        //}
+                    var choice = Console.ReadLine();
+
+                    switch (choice)
+                    {
+                        case "1":
+                            _userRepository.Delete(selectedUser.UserId);
+                            Console.WriteLine($"Profile s User ID-em {selectedUser.UserId} izbrisan.");
+                            break;
+                        case "2":
+                            Console.WriteLine("Enter new email:");
+                            var newEmail = Console.ReadLine();
+                            _userRepository.UpdateEmail(selectedUser.UserId, newEmail);
+                            Console.WriteLine($"Email za Usera s ID-em {selectedUser.UserId} updatean.");
+                            break;
+                        case "3":
+                            _userRepository.UpdateRole(selectedUser.UserId, true);
+                            Console.WriteLine($"User s ID-em {selectedUser.UserId} promoviran u admina.");
+                            break;
+                        default:
+                            Console.WriteLine("Neispravan izbor");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"User s ID-em {selectedUserId} ne postoji.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Neispravan ID");
+            }
+        }
     }
 }
